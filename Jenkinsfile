@@ -48,7 +48,26 @@ pipeline {
 		
 			}
 		}
+		
+		stage('Deploy green container') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
+					sh '''
+						kubectl apply -f ./green-controller.json
+					'''
+				}
+			}
+		}
 
+		stage('Create the service in the cluster, redirect to blue') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
+					sh '''
+						kubectl apply -f ./blue-service.json
+					'''
+				}
+			}
+		}
 
 	}
 
