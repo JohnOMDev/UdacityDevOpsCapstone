@@ -27,7 +27,7 @@ pipeline {
 			}
 		}
 
-		stage('Set current kubectl context') {
+		stage('Set the current kubectl context') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
 					sh '''
@@ -38,7 +38,7 @@ pipeline {
 				}
 			}
 		}
-		stage('Deploy blue container') {
+		stage('Deploy blue the container') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
 					sh '''
@@ -49,7 +49,7 @@ pipeline {
 			}
 		}
 		
-		stage('Deploy green container') {
+		stage('Deploy the green container') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
 					sh '''
@@ -59,7 +59,7 @@ pipeline {
 			}
 		}
 
-		stage('Create the service in the cluster, redirect to blue') {
+		stage('Create the service in the cluster, redirect to the blue') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
 					sh '''
@@ -69,6 +69,21 @@ pipeline {
 			}
 		}
 
+	stage('Wait for user to  approve') {
+            steps {
+                input "Are you ready to redirect traffic to green?"
+            }
+        }
+
+		stage('Create the service in the cluster, redirect to green') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
+					sh '''
+						kubectl apply -f ./green-service.json
+					'''
+				}
+			}
+		}
 	}
 
 }
