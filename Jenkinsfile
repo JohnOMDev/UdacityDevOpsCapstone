@@ -20,7 +20,7 @@ pipeline {
 
 		stage('Push Image To Dockerhub') {
 			steps {
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'johndev007', passwordVariable: 'Futarian16']]){
 					sh '''
 						sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
 						sudo docker push johndev007/johncapstonecluster
