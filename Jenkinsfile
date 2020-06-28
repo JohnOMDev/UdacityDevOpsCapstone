@@ -27,6 +27,29 @@ pipeline {
 			}
 		}
 
+		stage('Set current kubectl context') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
+					sh '''
+						sudo -s
+						kubectl config get-contexts
+						kubectl config use-context arn:aws:eks:us-west-2:238894399712:cluster/JohnCapstoneCluster
+					'''
+				}
+			}
+		}
+		stage('Deploy blue container') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
+					sh '''
+						kubectl apply -f ./blue-controller.json
+					'''
+				}
+		
+			}
+		}
+
+
 	}
 
 }

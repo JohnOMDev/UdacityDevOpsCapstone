@@ -2,4 +2,4 @@
 
 
 # Build image and add a descriptive tag
-docker build . --tag=JohnCapstoneCluster
+docker build . --tag=johncapstonecluster
