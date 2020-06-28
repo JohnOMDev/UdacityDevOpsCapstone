@@ -12,7 +12,7 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
-						sudo -n docker build -t johndev007/johncapstonecluster .
+						sudo docker build -t johndev007/johncapstonecluster .
 					'''
 				}
 			}
@@ -22,8 +22,8 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
-						sudo -n docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
-						sudo -n docker push johndev007/johncapstonecluster
+						sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
+						sudo docker push johndev007/johncapstonecluster
 					'''
 				}
 			}
