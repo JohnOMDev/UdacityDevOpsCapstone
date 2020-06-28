@@ -22,8 +22,8 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'Dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]){
 					sh '''
-						sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
-						sudo docker push johndev007/johncapstonecluster
+						sudo -n docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
+						sudo -n docker push johndev007/johncapstonecluster
 					'''
 				}
 			}
@@ -34,8 +34,8 @@ pipeline {
 				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
 					sh '''
 						sudo -s
-						kubectl config get-contexts
-						kubectl config use-context arn:aws:eks:us-west-2:238894399712:cluster/JohnCapstoneCluster
+						sudo kubectl config get-contexts
+						sudo kubectl config use-context arn:aws:eks:us-west-2:238894399712:cluster/JohnCapstoneCluster
 					'''
 				}
 			}
