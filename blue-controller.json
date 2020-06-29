@@ -22,7 +22,7 @@
             "containers":[
                {
                   "name":"blue",
-                  "image":"johndev007/johncapstoneproject",
+                  "image":"johndev007/johncapstonecluster",
                   "ports":[
                      {
                         "name":"http-server",
