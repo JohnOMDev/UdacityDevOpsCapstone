@@ -34,8 +34,8 @@ pipeline {
 				withAWS(region:'us-west-2', credentials:'Jenkins_User') {
 					sh '''
 						sudo -s
-						kubectl config get-contexts
-						kubectl config use-context arn:aws:eks:us-west-2:238894399712:cluster/JohnCapstoneCluster
+						sudo kubectl config get-contexts
+						sudo kubectl config use-context arn:aws:eks:us-west-2:238894399712:cluster/JohnCapstoneCluster
 					'''
 				}
 			}
