@@ -36,7 +36,7 @@ pipeline {
 						sudo su
 						sudo -n kubectl config get-contexts
 
-						sudo -n kubectl config use-context arn:aws:eks:us-west-2:238894399712:cluster/JohnCapstoneCluster
+						sudo -n kubectl config use-context arn:aws:eks:us-west-2:238894399712:cluster/johnnycapstonecluster
 					'''
 				}
 			}
